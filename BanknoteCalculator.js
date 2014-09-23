@@ -1,22 +1,101 @@
 ﻿//Автор: Георгий Поликарпов
 
-function BanknoteCalculator(amounts) {
-    if (amounts == null) {
+function BanknoteCalculator(money) {
+    if (money == null) {
         throw new Error("Значение не может быть null");
     }
+	
+	if (!money.hasOwnProperty('amounts')){
+		throw new Error("Некорректный аргумент");
+	}
+	
+	var amounts = money.amounts;
     
 	var counts = new BanknoteCount;
 	
     if (amounts.length > 0) {
-		amounts.forEach(function(value) {
+		amounts.forEach(function(value) {			
+			if (!isFinite(value)){
+				throw new Error("Некорректное значение");
+			}					
 			if (value < 0) {
 				throw new Error ("Сумма не может быть отрицательным числом!");
-			}			
+			}	
 		
 			currentCount = countOnAmount(value);
 			
 			counts.add(currentCount);
 		});
+		
+		if(money.hasOwnProperty('availableCounts')){
+			var availableCounts = money.availableCounts;
+			
+			if (availableCounts.hasOwnProperty('fiveThousandRubleCount') && availableCounts.fiveThousandRubleCount != null && counts.fiveThousandRubleCount > availableCounts.fiveThousandRubleCount){
+				counts.oneThousandRubleCount += 5*(counts.fiveThousandRubleCount - availableCounts.fiveThousandRubleCount);
+				counts.fiveThousandRubleCount = availableCounts.fiveThousandRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('oneThousandRubleCount') && availableCounts.oneThousandRubleCount != null && counts.oneThousandRubleCount > availableCounts.oneThousandRubleCount){
+				counts.fiveHundredRubleCount += 2*(counts.oneThousandRubleCount - availableCounts.oneThousandRubleCount);
+				counts.oneThousandRubleCount = availableCounts.oneThousandRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('fiveHundredRubleCount') && availableCounts.fiveHundredRubleCount != null && counts.fiveHundredRubleCount > availableCounts.fiveHundredRubleCount){
+				counts.oneHundredRubleCount += 5*(counts.fiveHundredRubleCount - availableCounts.fiveHundredRubleCount);
+				counts.fiveHundredRubleCount = availableCounts.fiveHundredRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('oneHundredRubleCount') && availableCounts.oneHundredRubleCount != null && counts.oneHundredRubleCount > availableCounts.oneHundredRubleCount){
+				counts.fiftyRubleCount += 2*(counts.oneHundredRubleCount - availableCounts.oneHundredRubleCount);
+				counts.oneHundredRubleCount = availableCounts.oneHundredRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('fiftyRubleCount') && availableCounts.fiftyRubleCount != null && counts.fiftyRubleCount > availableCounts.fiftyRubleCount){
+				counts.tenRubleCount += 5*(counts.fiftyRubleCount - availableCounts.fiftyRubleCount);
+				counts.fiftyRubleCount = availableCounts.fiftyRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('tenRubleCount') && availableCounts.tenRubleCount != null && counts.tenRubleCount > availableCounts.tenRubleCount){
+				counts.fiveRubleCount += 2*(counts.tenRubleCount - availableCounts.tenRubleCount);
+				counts.tenRubleCount = availableCounts.tenRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('fiveRubleCount') && availableCounts.fiveRubleCount != null && counts.fiveRubleCount > availableCounts.fiveRubleCount){
+				counts.twoRubleCount += 2*(counts.fiveRubleCount - availableCounts.fiveRubleCount);
+				counts.oneRubleCount += counts.fiveRubleCount - availableCounts.fiveRubleCount;
+				counts.fiveRubleCount = availableCounts.fiveRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('twoRubleCount') && availableCounts.twoRubleCount != null && counts.twoRubleCount > availableCounts.twoRubleCount){
+				counts.oneRubleCount += 2*(counts.twoRubleCount - availableCounts.twoRubleCount);
+				counts.twoRubleCount = availableCounts.twoRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('oneRubleCount') && availableCounts.oneRubleCount != null && counts.oneRubleCount > availableCounts.oneRubleCount){
+				counts.fiftyCopeckCount += 2*(counts.oneRubleCount - availableCounts.oneRubleCount);
+				counts.oneRubleCount = availableCounts.oneRubleCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('fiftyCopeckCount') && availableCounts.fiftyCopeckCount != null && counts.fiftyCopeckCount > availableCounts.fiftyCopeckCount){
+				counts.tenCopeckCount += 5*(counts.fiftyCopeckCount - availableCounts.fiftyCopeckCount);
+				counts.fiftyCopeckCount = availableCounts.fiftyCopeckCount;
+			}		
+			
+			if (availableCounts.hasOwnProperty('tenCopeckCount') && availableCounts.tenCopeckCount != null && counts.tenCopeckCount > availableCounts.tenCopeckCount){
+				counts.fiveCopeckCount += 2*(counts.tenCopeckCount - availableCounts.tenCopeckCount);
+				counts.tenCopeckCount = availableCounts.tenCopeckCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('fiveCopeckCount') && availableCounts.fiveCopeckCount != null && counts.fiveCopeckCount > availableCounts.fiveCopeckCount){
+				counts.oneCopeckCount += 5*(counts.fiveCopeckCount - availableCounts.fiveCopeckCount);
+				counts.fiveCopeckCount = availableCounts.fiveCopeckCount;
+			}
+			
+			if (availableCounts.hasOwnProperty('oneCopeckCount') && availableCounts.oneCopeckCount != null && counts.oneCopeckCount > availableCounts.oneCopeckCount){
+				counts.oneCopeckCount = availableCounts.oneCopeckCount;
+				counts.shortage = true;
+			}
+		}
 		
 		return counts;
 	}	
@@ -26,7 +105,7 @@ function BanknoteCalculator(amounts) {
 
 function countOnAmount(amount)
 {
-	var amount = 0.001 + parseFloat(amount.toFixed(2));
+	var amount = parseFloat(amount.toFixed(2));
 	var currentCount = new BanknoteCount;
 	
 	currentCount.fiveThousandRubleCount = Math.floor(amount / 5000);	
@@ -56,16 +135,16 @@ function countOnAmount(amount)
 	currentCount.oneRubleCount = Math.floor(amount / 1);
 	amount -= 1*currentCount.oneRubleCount;
 	
-	currentCount.fiftyCopeckCount = Math.floor(amount / 0.5);
+	currentCount.fiftyCopeckCount = Math.floor(amount.toFixed(2) / 0.5);
 	amount -= 0.5*currentCount.fiftyCopeckCount;
 	
-	currentCount.tenCopeckCount = Math.floor(amount / 0.1);
+	currentCount.tenCopeckCount = Math.floor(amount.toFixed(2) / 0.1);
 	amount -= 0.1*currentCount.tenCopeckCount;
 	
-	currentCount.fiveCopeckCount = Math.floor(amount / 0.05);
+	currentCount.fiveCopeckCount = Math.floor(amount.toFixed(2) / 0.05);
 	amount -= 0.05*currentCount.fiveCopeckCount;
 					
-	currentCount.oneCopeckCount = Math.floor(amount / 0.01);
+	currentCount.oneCopeckCount = Math.floor(amount.toFixed(2) / 0.01);
 	
 	return currentCount;
 }
