@@ -2,7 +2,7 @@
 
 function valueChange(e) {
     var $char = String.fromCharCode(e.which);
-    if ($char >= '0' && $char <= '9' || $char == ',' || $char == '.') {
+    if ($char >= '0' && $char <= '9' || $char == ',' && !$(this).hasClass('available') || $char == '.' && !$(this).hasClass('available')) {
         var selectionStart = this.selectionStart;
         var selectionEnd = this.selectionEnd;
         if (selectionStart != this.value.length) {
@@ -36,3 +36,6 @@ function inputKeyUp(e) {
 
 $("input.value").on("keypress", valueChange);
 $("input.value").on("keyup", inputKeyUp);
+
+$("input.available").on("keypress", valueChange);
+$("input.available").on("keyup", inputKeyUp);
