@@ -8,7 +8,7 @@ function BanknoteCalculator() {
 		
 		var countSame = function(name, denominator){
 			currentCount[name] = Math.floor(amount / denominator);	
-			amount -= (denominator * currentCount[name]).toFixed(2);	
+			amount = (amount - denominator * currentCount[name]).toFixed(2);	
 		}
 		
 		countSame('5000r',5000);

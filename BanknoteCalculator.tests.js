@@ -4,7 +4,7 @@ module("Null argument");
 
 test("Null argument test", function () {
     throws(function() {
-		BanknoteCalculator(null);
+		new new BanknoteCalculator().calculate().calculate(null);
 	}
 	, new Error("Значение не может быть null"));
 });
@@ -13,14 +13,14 @@ module ("Invalid argument");
 
 test("Invalid argument {}", function () {
     throws(function() {
-		BanknoteCalculator({});
+		new BanknoteCalculator().calculate({});
 	}
 	, new Error("Некорректный аргумент"));
 });
 
 test("Invalid argument [5,215]", function () {
     throws(function() {
-		BanknoteCalculator([5,215]);
+		new BanknoteCalculator().calculate([5,215]);
 	}
 	, new Error("Некорректный аргумент"));
 });
@@ -29,7 +29,7 @@ test("Invalid argument [5,215]", function () {
 module("Test empty argument");
 
 test("Empty argument", function () {
-    var count = BanknoteCalculator({'amounts': []});
+    var count = new BanknoteCalculator().calculate({'amounts': []});
     equal(count['5000r'], 0);
     equal(count['1000r'], 0);
     equal(count['500r'], 0);
@@ -51,7 +51,7 @@ module("Negative argument");
 test("-3254.2564", function () {
     var amounts = [-3254.2564];
     throws(function() {
-	BanknoteCalculator({'amounts': amounts});
+	new BanknoteCalculator().calculate({'amounts': amounts});
 	}
 	, new Error("Сумма не может быть отрицательным числом!"));
 });
@@ -59,7 +59,7 @@ test("-3254.2564", function () {
 test("1500.15, -2000.87", function () {
     var amounts = [1500.15, -2000.87];
     throws(function() {
-	BanknoteCalculator({'amounts': amounts});
+	new BanknoteCalculator().calculate({'amounts': amounts});
 	}
 	, new Error("Сумма не может быть отрицательным числом!"));
 });
@@ -67,7 +67,7 @@ test("1500.15, -2000.87", function () {
 test("3570, 4350, -15450.15", function () {
     var amounts = [3570, 4350, -15450.15];
     throws(function() {
-	BanknoteCalculator({'amounts': amounts});
+	new BanknoteCalculator().calculate({'amounts': amounts});
 	}
 	, new Error("Сумма не может быть отрицательным числом!"));
 });
@@ -75,7 +75,7 @@ test("3570, 4350, -15450.15", function () {
 test("3570, 4350, -15450.15", function () {
     var amounts = [3570, 4350, -15450.15];
     throws(function() {
-	BanknoteCalculator({'amounts': amounts});
+	new BanknoteCalculator().calculate({'amounts': amounts});
 	}
 	, new Error("Сумма не может быть отрицательным числом!"));
 });
@@ -83,7 +83,7 @@ test("3570, 4350, -15450.15", function () {
 test("1560, -1100.156, 2560", function () {
     var amounts = [1560, -1100.156, 2560];
     throws(function() {
-	BanknoteCalculator({'amounts': amounts});
+	new BanknoteCalculator().calculate({'amounts': amounts});
 	}
 	, new Error("Сумма не может быть отрицательным числом!"));
 });
@@ -91,7 +91,7 @@ test("1560, -1100.156, 2560", function () {
 test("-0.01, 1000, 240", function () {
     var amounts = [-0.01, 1000, 240];
     throws(function() {
-	BanknoteCalculator({'amounts': amounts});
+	new BanknoteCalculator().calculate({'amounts': amounts});
 	}
 	, new Error("Сумма не может быть отрицательным числом!"));
 });
@@ -101,7 +101,7 @@ module("One element");
 
 test("6668.66", function () {
     var amounts = [6668.66];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 1);
     equal(count['1000r'], 1);
     equal(count['500r'], 1);
@@ -119,7 +119,7 @@ test("6668.66", function () {
 
 test("9999.99", function () {
     var amounts = [9999.99];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 1);
     equal(count['1000r'], 4);
     equal(count['500r'], 1);
@@ -137,7 +137,7 @@ test("9999.99", function () {
 
 test("13979.77", function () {
     var amounts = [13979.77];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 2);
     equal(count['1000r'], 3);
     equal(count['500r'], 1);
@@ -155,7 +155,7 @@ test("13979.77", function () {
 
 test("0", function () {
     var amounts = [0];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 0);
     equal(count['1000r'], 0);
     equal(count['500r'], 0);
@@ -173,7 +173,7 @@ test("0", function () {
 
 test("0.01", function () {
     var amounts = [0.01];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 0);
     equal(count['1000r'], 0);
     equal(count['500r'], 0);
@@ -191,7 +191,7 @@ test("0.01", function () {
 
 test("0.007", function () {
     var amounts = [0.007];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 0);
     equal(count['1000r'], 0);
     equal(count['500r'], 0);
@@ -209,7 +209,7 @@ test("0.007", function () {
 
 test("169346.94", function () {
     var amounts = [169346.94];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 33);
     equal(count['1000r'], 4);
     equal(count['500r'], 0);
@@ -227,7 +227,7 @@ test("169346.94", function () {
 
 test("16768.6432", function () {
     var amounts = [16768.6432];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 3);
     equal(count['1000r'], 1);
     equal(count['500r'], 1);
@@ -245,7 +245,7 @@ test("16768.6432", function () {
 
 test("76432.16", function () {
     var amounts = [76432.16];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 15);
     equal(count['1000r'], 1);
     equal(count['500r'], 0);
@@ -263,7 +263,7 @@ test("76432.16", function () {
 
 test("0.002", function () {
     var amounts = [0.002];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 0);
     equal(count['1000r'], 0);
     equal(count['500r'], 0);
@@ -284,7 +284,7 @@ module("Some element");
 
 test("2500, 2500", function () {
     var amounts = [2500, 2500];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 0);
     equal(count['1000r'], 4);
     equal(count['500r'], 2);
@@ -302,7 +302,7 @@ test("2500, 2500", function () {
 
 test("6668.66, 6668.66", function () {
     var amounts = [6668.66, 6668.66];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 2);
     equal(count['1000r'], 2);
     equal(count['500r'], 2);
@@ -320,7 +320,7 @@ test("6668.66, 6668.66", function () {
 
 test("9999.99, 16432.16", function () {
     var amounts = [9999.99, 16432.16];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 4);
     equal(count['1000r'], 5);
     equal(count['500r'], 1);
@@ -338,7 +338,7 @@ test("9999.99, 16432.16", function () {
 
 test("163467.34, 643632.85", function () {
     var amounts = [163467.34, 643632.85];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 160);
     equal(count['1000r'], 6);
     equal(count['500r'], 1);
@@ -356,7 +356,7 @@ test("163467.34, 643632.85", function () {
 
 test("13643.15, 6744.96, 4000.543", function () {
     var amounts = [13643.15, 6744.96, 4000.543];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 3);
     equal(count['1000r'], 8);
     equal(count['500r'], 2);
@@ -374,7 +374,7 @@ test("13643.15, 6744.96, 4000.543", function () {
 
 test("324.167, 111.111, 15.466", function () {
     var amounts = [324.167, 111.111, 15.466];
-    var count = BanknoteCalculator({'amounts':amounts});
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
     equal(count['5000r'], 0);
     equal(count['1000r'], 0);
     equal(count['500r'], 0);
@@ -402,7 +402,7 @@ test("13979.77|5000=1", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 1);
     equal(count['1000r'], 8);
     equal(count['500r'], 1);
@@ -428,7 +428,7 @@ test("6668.66|5000=0,500=0", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 0);
     equal(count['1000r'], 6);
     equal(count['500r'], 0);
@@ -454,7 +454,7 @@ test("6668.66|5000=2,500=2", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 1);
     equal(count['1000r'], 1);
     equal(count['500r'], 1);
@@ -480,7 +480,7 @@ test("6668.66|5000=2,500=0", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 1);
     equal(count['1000r'], 1);
     equal(count['500r'], 0);
@@ -511,7 +511,7 @@ test("13979.77|5000=1,100=3,50=5,10=1,5=2,2=3,1=10", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 1);
     equal(count['1000r'], 8);
     equal(count['500r'], 1);
@@ -542,7 +542,7 @@ test("13979.77|5000=1,100=3,50=5,10=1,5=2,2=3,1=10", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 1);
     equal(count['1000r'], 8);
     equal(count['500r'], 1);
@@ -570,7 +570,7 @@ test("13643.15, 6744.96, 4000.543|5000=5,1000=5,500=5,100=5,50=5", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 3);
     equal(count['1000r'], 5);
     equal(count['500r'], 5);
@@ -598,7 +598,7 @@ test("324.167, 111.111, 15.466|0.50=5,0.10=5,0.05=5,0.01=5", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 0);
     equal(count['1000r'], 0);
     equal(count['500r'], 0);
@@ -635,7 +635,7 @@ test("324.167, 111.111, 15.466|All=1", function () {
 		'amounts':amounts,
 		'availableCounts': counts
 	};
-    var count = BanknoteCalculator(money);
+    var count = new BanknoteCalculator().calculate(money);
     equal(count['5000r'], 0);
     equal(count['1000r'], 0);
     equal(count['500r'], 0);
