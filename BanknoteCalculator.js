@@ -3,7 +3,7 @@
 function BanknoteCalculator() {
 	var countOnAmount = function countOnAmount(amount)
 	{
-		var amount = parseFloat(amount.toFixed(2));
+		var amount = parseFloat(Math.floor(amount*100)/100);
 		var currentCount = new BanknoteCount;
 		
 		var countSame = function(name, denominator){

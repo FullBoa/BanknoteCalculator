@@ -51,7 +51,7 @@ function calculateCount() {
             $(element).removeClass("invalid");
             element.name = "Amounts[" + validCount + "]";
 			amounts.push(parseFloat(element.value));
-			total +=parseFloat(element.value);
+			total += parseFloat(Math.floor(element.value * 100) / 100);
             validCount++;
         }
 
@@ -81,7 +81,7 @@ function calculateCount() {
 		'availableCounts':counts
 	};
 
-    $("b.total").text("Итого: " + total.toFixed(2).toString());
+    $("b.total").text("Итого: " + total.toString());
 	var calculator = new BanknoteCalculator();
 	var counts = calculator.calculate(money);
 	fillBanknoteCount(counts);
