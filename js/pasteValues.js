@@ -23,7 +23,8 @@ function onAmountPaste(event) {
     if (amounts.length > 0) {
         this.value = this.value.substring(0, this.selectionStart)
             + amounts[0]
-            + this.value.substring(this.selectionEnd, this.value.length);
+            + this.value.substring(this.selectionEnd, this.value.length);		
+		this.selectionStart = this.selectionEnd;
 
         for (var i = amounts.length - 1; i > 0; i--) {
 			var $pElement = $('<p/>', {
@@ -90,6 +91,7 @@ function onAvailablePaste(event) {
         this.value = this.value.substring(0, this.selectionStart)
             + availables[0]
             + this.value.substring(this.selectionEnd, this.value.length);
+		this.selectionStart = this.selectionEnd;	
 			
 		var $target = $target.next();
 			

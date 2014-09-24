@@ -30,7 +30,7 @@ function inputKeyUp(e) {
         
         calculateCount();
 
-        this.selectionStart = selectionEnd;
+        this.selectionStart = selectionStart;
         this.selectionEnd = selectionEnd;
 	}	
 }

@@ -2,7 +2,7 @@
 
 function cutValue(event){
 	
-	if(event.originalEvent.clipboardData ) {
+	if(event.originalEvent.clipboardData) {
         event.originalEvent.clipboardData.setData('text/plain',this.value.substring(this.selectionStart, this.selectionEnd));
     } else if (window.clipboardData) {
          window.clipboardData.setData('Text',this.value.substring(this.selectionStart, this.selectionEnd));
@@ -10,6 +10,7 @@ function cutValue(event){
     
 	this.value = this.value.substring(0, this.selectionStart)
 		+ this.value.substring(this.selectionEnd, this.value.length);
+	this.selectionEnd = this.selectionStart;
 
     calculateCount();
 
