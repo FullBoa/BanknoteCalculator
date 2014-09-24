@@ -16,34 +16,30 @@
         padding: 0;
         position: relative;
         vertical-align: top;
+		width:200px;
     }
 
         div.amounts {
             height: auto;
             position: relative;
-			width: 200px;
         }
 
         div.input {
-            width: 200px;
             overflow: auto;
         }
 
         div.availableCount {
             margin-left: 50px;
             overflow: auto;
-            width: 200px;
         }
 
         div.banknoteCount {
             margin-left: 50px;
             overflow: auto;
-            width: 200px;
         }
 
         div.main {
-            overflow: visible;
-            width: 1000px;
+            width: 710px;
         }
 
     h3 {
