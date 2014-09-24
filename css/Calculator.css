@@ -7,7 +7,7 @@
 		}
 		
 		a.clearAvailable {
-			margin-left:75px;
+			padding-left:75px;
 		}
 
     div {
@@ -32,13 +32,13 @@
         div.availableCount {
             margin-left: 50px;
             overflow: auto;
-            width: 250px;
+            width: 200px;
         }
 
         div.banknoteCount {
             margin-left: 50px;
             overflow: auto;
-            width: 250px;
+            width: 200px;
         }
 
         div.main {
@@ -50,6 +50,10 @@
         margin-bottom: 1.5em;
         text-align: left;
     }
+	
+	input {
+		width: 120px;
+	}
 
     input.calculate {
         margin-top: 15px;
@@ -61,11 +65,15 @@
 
     label {
         float: left;
+		margin:0;
+		text-align:left;
+		width:70px;
     }
 
     p {
         clear: both;
         margin-top: 0;
+		text-align: left;
     }
 
         p.availableCount {
