@@ -6,31 +6,24 @@ function BanknoteCalculator() {
 		var amount = parseFloat(amount.toFixed(2));
 		var currentCount = new BanknoteCount;
 		
-		currentCount['5000r'] = Math.floor(amount / 5000);	
-		amount -= 5000*currentCount['5000r'];	
-		currentCount['1000r'] = Math.floor(amount / 1000);
-		amount -= 1000*currentCount['1000r'];	
-		currentCount['500r'] = Math.floor(amount / 500);
-		amount -= 500*currentCount['500r'];	
-		currentCount['100r'] = Math.floor(amount / 100);
-		amount -= 100*currentCount['100r'];	
-		currentCount['50r'] = Math.floor(amount / 50);
-		amount -= 50*currentCount['50r'];	
-		currentCount['10r'] = Math.floor(amount / 10);
-		amount -= 10*currentCount['10r'];	
-		currentCount['5r'] = Math.floor(amount / 5);
-		amount -= 5*currentCount['5r'];	
-		currentCount['2r'] = Math.floor(amount / 2);
-		amount -= 2*currentCount['2r'];	
-		currentCount['1r'] = Math.floor(amount / 1);
-		amount -= 1*currentCount['1r'];	
-		currentCount['50k'] = Math.floor(amount.toFixed(2) / 0.5);
-		amount -= 0.5*currentCount['50k'];	
-		currentCount['10k'] = Math.floor(amount.toFixed(2) / 0.1);
-		amount -= 0.1*currentCount['10k'];	
-		currentCount['5k'] = Math.floor(amount.toFixed(2) / 0.05);
-		amount -= 0.05*currentCount['5k'];					
-		currentCount['1k'] = Math.floor(amount.toFixed(2) / 0.01);
+		var countSame = function(name, denominator){
+			currentCount[name] = Math.floor(amount / denominator);	
+			amount -= (denominator * currentCount[name]).toFixed(2);	
+		}
+		
+		countSame('5000r',5000);
+		countSame('1000r',1000);
+		countSame('500r',500);
+		countSame('100r',100);
+		countSame('50r',50);
+		countSame('10r',10);
+		countSame('5r',5);
+		countSame('2r',2);
+		countSame('1r',1);
+		countSame('50k',0.5);
+		countSame('10k',0.1);
+		countSame('5k',0.05);
+		countSame('1k',0.01);
 		
 		return currentCount;
 	}
