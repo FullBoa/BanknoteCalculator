@@ -88,10 +88,8 @@ function BanknoteCalculator() {
 			return counts;
 		}	
 			
-			return new BanknoteCount;
+		return new BanknoteCount;
 	}
-	
-	
 }
 
 
