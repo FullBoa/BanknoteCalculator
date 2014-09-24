@@ -13,7 +13,7 @@ function valueChange(e) {
             this.value += $char;
         }
 
-        calculateOnClick();
+        calculateCount();
 
         this.selectionStart = selectionStart + 1;
         this.selectionEnd = selectionStart + 1;
@@ -27,7 +27,7 @@ function inputKeyUp(e) {
     if ($key == 8 || $key == 46) {
         var selectionEnd = this.selectionEnd;
         
-        calculateOnClick();
+        calculateCount();
 
         this.selectionStart = selectionEnd;
         this.selectionEnd = selectionEnd;
@@ -36,6 +36,5 @@ function inputKeyUp(e) {
 
 $("input.value").on("keypress", valueChange);
 $("input.value").on("keyup", inputKeyUp);
-
 $("input.available").on("keypress", valueChange);
 $("input.available").on("keyup", inputKeyUp);

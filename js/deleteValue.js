@@ -2,7 +2,7 @@
 
 function deleteValueOnClick() {
     $(this).parent().remove();
-	calculateOnClick();
+	calculateCount();
 
     return false;
 }

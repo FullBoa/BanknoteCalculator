@@ -4,18 +4,15 @@ function addValueOnClick() {
     var $pElement = $('<p/>', {
         class: "amountValue"
     });
-
     var $inputElement = $("<input/>", {
         class: "value",
         type: "text"
     });
-
     var $aElement = $("<a/>", {
         class: "delete",
         href: "",
         click: deleteValueOnClick
     });
-
     var $bElement = $("<b/>", {
         text: '\u00D7'
     });
@@ -25,7 +22,8 @@ function addValueOnClick() {
     $pElement.append($aElement);
     $aElement.append($bElement);
     
-    $inputElement.on("paste", onInputPaste);
+    $inputElement.on("paste", onAmountPaste);	
+	$inputElement.on("cut", cutValue);
     $inputElement.on("keypress", valueChange);
     $inputElement.on("keyup", inputKeyUp);
 

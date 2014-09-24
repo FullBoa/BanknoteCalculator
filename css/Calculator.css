@@ -1,8 +1,14 @@
 <style>
-
-    a.delete {
-        text-decoration: none;
-    }
+	a {
+	}
+	
+		a.delete{
+			text-decoration: none;
+		}
+		
+		a.clearAvailable {
+			margin-left:75px;
+		}
 
     div {
         display: inline-block;
@@ -83,4 +89,8 @@
             margin-left: 5px;
             margin-top: 10px;
         }
+		
+		p.shortage {
+			color: red;
+		}
 </style>
