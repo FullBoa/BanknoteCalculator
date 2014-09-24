@@ -53,8 +53,11 @@ function onAmountPaste(event) {
 
 			$inputElement.on("paste", onAmountPaste);
 			$inputElement.on("cut", cutValue);
-			$inputElement.on("keypress", valueChange);
 			$inputElement.on("keyup", inputKeyUp);
+			
+			//для IE
+			$inputElement.on("oncut", onAmountPaste);
+			$inputElement.on("onpaste", onAmountPaste);
         }
     }
 
@@ -102,3 +105,7 @@ function onAvailablePaste(event) {
 
 $("p.amountValue").find("input.value").on("paste", onAmountPaste);
 $("p.availableCount").find("input.available").on("paste", onAvailablePaste);
+
+//для IE
+$("p.amountValue").find("input.value").on("onpaste", onAmountPaste);
+$("p.availableCount").find("input.available").on("onpaste", onAvailablePaste);

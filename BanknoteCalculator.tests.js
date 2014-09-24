@@ -204,7 +204,7 @@ test("0.007", function () {
     equal(count['50k'], 0);
     equal(count['10k'], 0);
     equal(count['5k'], 0);
-    equal(count['1k'], 1);
+    equal(count['1k'], 0);
 });
 
 test("169346.94", function () {
@@ -387,7 +387,7 @@ test("324.167, 111.111, 15.466", function () {
     equal(count['50k'], 0);
     equal(count['10k'], 6);
     equal(count['5k'], 2);
-    equal(count['1k'], 5);
+    equal(count['1k'], 3);
 });
 
 
@@ -611,7 +611,7 @@ test("324.167, 111.111, 15.466|0.50=5,0.10=5,0.05=5,0.01=5", function () {
     equal(count['50k'], 0);
     equal(count['10k'], 5);
     equal(count['5k'], 4);
-    equal(count['1k'], 5);
+    equal(count['1k'], 3);
 });
 
 test("324.167, 111.111, 15.466|All=1", function () {    

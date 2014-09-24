@@ -23,18 +23,17 @@ function valueChange(e) {
 }
 
 function inputKeyUp(e) {
-    var $key = e.which;
-    if ($key == 8 || $key == 46) {
-        var selectionEnd = this.selectionEnd;
+	var $key = e.which;
+    if ($key < 16 || ($key > 18 && $key < 37) || $key > 40) {
+		var selectionEnd = this.selectionEnd;
+		var selectionStart = this.selectionStart;
         
         calculateCount();
 
         this.selectionStart = selectionEnd;
         this.selectionEnd = selectionEnd;
-    }
+	}	
 }
 
-$("input.value").on("keypress", valueChange);
 $("input.value").on("keyup", inputKeyUp);
-$("input.available").on("keypress", valueChange);
 $("input.available").on("keyup", inputKeyUp);

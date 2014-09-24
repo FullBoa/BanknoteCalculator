@@ -24,8 +24,11 @@ function addValueOnClick() {
     
     $inputElement.on("paste", onAmountPaste);	
 	$inputElement.on("cut", cutValue);
-    $inputElement.on("keypress", valueChange);
     $inputElement.on("keyup", inputKeyUp);
+	
+	//для IE
+	$inputElement.on("oncut", onAmountPaste);
+	$inputElement.on("onpaste", onAmountPaste);
 
     return false;
 }
