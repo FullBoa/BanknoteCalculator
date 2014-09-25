@@ -66,7 +66,7 @@ function calculateCount() {
 		}
 		if (element.value != ""){
 			var patternInt = /^0$|^[1-9][0-9]*$/;
-			if (!patternInt.test(element.value)){
+			if (!patternInt.test(element.value)  || (parseInt(element.value) > maxValue)){
 				$(element).addClass("invalid");
 			}
 			else{
