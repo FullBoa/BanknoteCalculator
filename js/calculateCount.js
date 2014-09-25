@@ -32,19 +32,20 @@ function fillBanknoteCount(counts) {
 }
 
 function calculateCount() {
+	var maxValue = 1000000000000000; // 1 квадриллион
 
     var total = 0;
     var validCount = 0;
 	var amounts = [];
 
     $("div.amounts").find("input.value").each(function (index, element) {
-        element.value = element.value.replace(",", ".").trim();
+        element.value = element.value.replace(",", ".");
+		while(/\s+/.test(element.value)){
+			element.value = element.value.replace(/\s+/, "");
+		}
 
-        var patternFloat = /^[0-9]+(\.|\,){1}[0-9]*$/;
-        var patternInt = /^[0-9]+$/;
-        var patternNegative = /^-.*/;
-        if (!(patternFloat.test(element.value) || patternInt.test(element.value))
-            || patternNegative.test(element.value)) {
+        var patternFloat = /(^[1-9][0-9]*|^0{1})((\.|\,){1}[0-9]*[1-9])?$/;
+		if (!patternFloat.test(element.value) || (parseFloat(element.value) > maxValue)) {
             $(element).addClass("invalid");
             element.name = "";
         } else {
@@ -60,9 +61,11 @@ function calculateCount() {
 	var counts = {};
 	
 	$("div.availableCount").find("input.available").each(function (index, element) {
-		element.value = element.value.trim();
+		while(/\s+/.test(element.value)){
+			element.value = element.value.replace(/\s+/, "");
+		}
 		if (element.value != ""){
-			var patternInt = /^[0-9]+$/;
+			var patternInt = /^0$|^[1-9][0-9]*$/;
 			if (!patternInt.test(element.value)){
 				$(element).addClass("invalid");
 			}

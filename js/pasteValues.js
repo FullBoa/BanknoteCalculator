@@ -13,9 +13,12 @@ function onAmountPaste(event) {
 
     var amounts = [];
     pastedText.split('\n').forEach(function (element) {
-        element.split("\t").forEach(function (element) {
-            if (element.trim() != "") {
-                amounts.push(element.trim());
+        element.split("\t").forEach(function (element) {			
+			while(/\s+/.test(element)){
+				element = element.replace(/\s+/, "");
+			}
+            if (element != "") {
+                amounts.push(element);
             }
         });
     });
@@ -81,8 +84,11 @@ function onAvailablePaste(event) {
     var availables = [];
     pastedText.split('\n').forEach(function (element) {
         element.split("\t").forEach(function (element) {
-            if (element.trim() != "") {
-                availables.push(element.trim());
+			while(/\s+/.test(element)){
+				element = element.replace(/\s+/, "");
+			}
+            if (element != "") {
+                availables.push(element);
             }
         });
     });
