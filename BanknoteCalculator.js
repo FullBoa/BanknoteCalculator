@@ -97,6 +97,10 @@ function BanknoteCalculator() {
 	}
 	
 	this.total = function(amounts) {
+		if (amounts == null) {
+			throw new Error("Значение не может быть null");
+		}
+		
 		var total = 0;
 		amounts.forEach(function(value) {	
 			if (!isFinite(value)){

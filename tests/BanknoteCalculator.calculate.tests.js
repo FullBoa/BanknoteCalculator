@@ -1,6 +1,6 @@
 ﻿//Автор: Георгий Поликарпов
 
-module("Null argument");
+module("calculate() Null argument");
 
 test("Null argument test", function () {
     throws(function() {
@@ -9,7 +9,7 @@ test("Null argument test", function () {
 	, new Error("Значение не может быть null"));
 });
 
-module ("Invalid argument");
+module ("calculate() Invalid argument");
 
 test("Invalid argument {}", function () {
     throws(function() {
@@ -26,7 +26,7 @@ test("Invalid argument [5,215]", function () {
 });
 
 
-module("Test empty argument");
+module("calculate() Empty argument");
 
 test("Empty argument", function () {
     var count = new BanknoteCalculator().calculate({'amounts': []});
@@ -46,7 +46,7 @@ test("Empty argument", function () {
 });
 
 
-module("Negative argument");
+module("calculate() Negative argument");
 
 test("-3254.2564", function () {
     var amounts = [-3254.2564];
@@ -97,7 +97,7 @@ test("-0.01, 1000, 240", function () {
 });
 
 
-module("One element");
+module("calculate() One element");
 
 test("6668.66", function () {
     var amounts = [6668.66];
@@ -298,7 +298,7 @@ test("18058.26", function () {
 });
 
 
-module("Some element");
+module("calculate() Some element");
 
 test("2500, 2500", function () {
     var amounts = [2500, 2500];
@@ -409,7 +409,7 @@ test("324.167, 111.111, 15.466", function () {
 });
 
 
-module ("With available banknote counts");
+module ("calculate() With available banknote counts");
 
 test("13979.77|5000=1", function () {
     var amounts = [13979.77];
