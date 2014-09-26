@@ -279,6 +279,24 @@ test("0.002", function () {
     equal(count['1k'], 0);
 });
 
+test("18058.26", function () {
+    var amounts = [18058.26];
+    var count = new BanknoteCalculator().calculate({'amounts':amounts});
+    equal(count['5000r'], 3);
+    equal(count['1000r'], 3);
+    equal(count['500r'], 0);
+    equal(count['100r'], 0);
+    equal(count['50r'], 1);
+    equal(count['10r'], 0);
+    equal(count['5r'], 1);
+    equal(count['2r'], 1);
+    equal(count['1r'], 1);
+    equal(count['50k'], 0);
+    equal(count['10k'], 2);
+    equal(count['5k'], 1);
+    equal(count['1k'], 1);
+});
+
 
 module("Some element");
 

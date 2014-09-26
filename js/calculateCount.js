@@ -34,7 +34,6 @@ function fillBanknoteCount(counts) {
 function calculateCount() {
 	var maxValue = 1000000000000000; // 1 квадриллион
 
-    var total = 0;
     var validCount = 0;
 	var amounts = [];
 
@@ -52,7 +51,6 @@ function calculateCount() {
             $(element).removeClass("invalid");
             element.name = "Amounts[" + validCount + "]";
 			amounts.push(parseFloat(element.value));
-			total += parseFloat(Math.floor(element.value * 100) / 100);
             validCount++;
         }
 
@@ -84,8 +82,9 @@ function calculateCount() {
 		'availableCounts':counts
 	};
 
-    $("b.total").text("Итого: " + total.toFixed(2));
+	
 	var calculator = new BanknoteCalculator();
+    $("b.total").text("Итого: " + calculator.total(amounts));
 	var counts = calculator.calculate(money);
 	fillBanknoteCount(counts);
 

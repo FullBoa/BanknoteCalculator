@@ -2,8 +2,13 @@
 
 function BanknoteCalculator() {
 	var countOnAmount = function countOnAmount(amount)
-	{
-		var amount = parseFloat(Math.floor(amount*100)/100);
+	{		
+		amount = amount.toString();
+		if (amount.indexOf(".") > -1) {
+		amount = parseFloat(amount.substring(0,amount.indexOf(".")+3));
+		} else {
+			amount = parseInt(amount);
+		}
 		var currentCount = new BanknoteCount;
 		
 		var countSame = function(name, denominator){
@@ -89,6 +94,30 @@ function BanknoteCalculator() {
 		}	
 			
 		return new BanknoteCount;
+	}
+	
+	this.total = function(amounts) {
+		var total = 0;
+		amounts.forEach(function(value) {	
+			if (!isFinite(value)){
+				throw new Error("Некорректное значение");
+			}
+
+			value = value.toString();
+			if (value.indexOf(".") > -1) {
+			value = parseFloat(value.substring(0,value.indexOf(".")+3));
+			} else {
+				value = parseInt(value);
+			}
+			
+			if (value < 0) {
+				throw new Error ("Сумма не может быть отрицательным числом!");
+			}
+			
+			total += value;
+		});
+		
+		return total;
 	}
 }
 
