@@ -4,7 +4,7 @@ module("calculate() Null argument");
 
 test("Null argument test", function () {
     throws(function() {
-		new new BanknoteCalculator().calculate().calculate(null);
+		new new BanknoteCalculator().calculate(null);
 	}
 	, new Error("Значение не может быть null"));
 });

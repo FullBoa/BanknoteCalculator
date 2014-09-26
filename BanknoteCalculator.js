@@ -50,7 +50,7 @@ function BanknoteCalculator() {
 					throw new Error("Некорректное значение");
 				}					
 				if (value < 0) {
-					throw new Error ("Сумма не может быть отрицательным числом!");
+					throw new Error ("Сумма не может быть отрицательным числом");
 				}	
 			
 				currentCount = countOnAmount(value);
@@ -101,21 +101,29 @@ function BanknoteCalculator() {
 			throw new Error("Значение не может быть null");
 		}
 		
+		if (!Array.isArray(amounts)){
+			amounts = [amounts];
+		}
+		
 		var total = 0;
 		amounts.forEach(function(value) {	
 			if (!isFinite(value)){
 				throw new Error("Некорректное значение");
 			}
-
+			
 			value = value.toString();
 			if (value.indexOf(".") > -1) {
-			value = parseFloat(value.substring(0,value.indexOf(".")+3));
+				value = parseFloat(value.substring(0,value.indexOf(".")+3));
 			} else {
 				value = parseInt(value);
 			}
 			
+			if (isNaN(value)){
+				throw new Error ("Некорректное значение");
+			}	
+			
 			if (value < 0) {
-				throw new Error ("Сумма не может быть отрицательным числом!");
+				throw new Error ("Сумма не может быть отрицательным числом");
 			}
 			
 			total += value;

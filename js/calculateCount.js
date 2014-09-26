@@ -84,7 +84,7 @@ function calculateCount() {
 
 	
 	var calculator = new BanknoteCalculator();
-    $("b.total").text("Итого: " + calculator.total(amounts));
+    $("b.total").text("Итого: " + calculator.total(amounts).toFixed(2));
 	var counts = calculator.calculate(money);
 	fillBanknoteCount(counts);
 
